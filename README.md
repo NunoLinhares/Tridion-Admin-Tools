@@ -14,25 +14,25 @@ On a Tridion machine, browse to the folder where this file is and run
 PS> .\GetTridionEventSystemExtensions.ps1
 
 Output looks like this:
-
+```
 ==========================================================
 File:  C:\Program Files (x86)\SDL Web\bin\Tridion.Web.UI.CME.TcmExtensions.dll
 ==========================================================
- Method WebSiteSettingsSaveEventHandler extends object Publication on SaveApplicationData
- Method WebSiteSettingsDeleteEventHandler extends object Publication on DeleteApplicationData
- Method ClearWebSiteSettings extends object Publication on Tcm
- Method IdentifiableObjectEventHandler extends object IdentifiableObject on Tcm
+ Method WebSiteSettingsSaveEventHandler extends object Type Publication with SaveApplicationDataEventArgs
+ Method WebSiteSettingsDeleteEventHandler extends object Type Publication with DeleteApplicationDataEventArgs
+ Method ClearWebSiteSettings extends object Type Publication with TcmEventArgs
+ Method IdentifiableObjectEventHandler extends object Type IdentifiableObject with TcmEventArgs
 ==========================================================
 File:  C:\Program Files (x86)\SDL Web\bin\Tridion.SiteEdit.TcmExtensions.dll
 ==========================================================
- Method PublicationCreatedEventHandler extends object Publication on Save
- Method PageDemoteEventHandler extends object Page on Demote
- Method ContentTypeItemDemoteEventHandler extends object RepositoryLocalObject on Demote
- Method HandleTcmRepositoryItemRemoved extends object IdentifiableObject on Delete
- Method HandleTcmRepositoryRemoveInitiated extends object Publication on Delete
- Method HandleTcmRepositoryRemoved extends object Publication on Delete
- Method ComponentCopyInitiatedEventHandler extends object Component on Copy
- Method ComponentCopyProcessedEventHandler extends object Component on Copy
- Method PageCopyInitiatedEventHandler extends object Page on Copy
- Method PageCopyProcessedEventHandler extends object Page on Copy
-
+ Method PublicationCreatedEventHandler extends object Type Publication with SaveEventArgs
+ Method PageDemoteEventHandler extends object Type Page with DemoteEventArgs
+ Method ContentTypeItemDemoteEventHandler extends object Type RepositoryLocalObject with DemoteEventArgs
+ Method HandleTcmRepositoryItemRemoved extends object Type IdentifiableObject with DeleteEventArgs
+ Method HandleTcmRepositoryRemoveInitiated extends object Type Publication with DeleteEventArgs
+ Method HandleTcmRepositoryRemoved extends object Type Publication with DeleteEventArgs
+ Method ComponentCopyInitiatedEventHandler extends object Type Component with CopyEventArgs
+ Method ComponentCopyProcessedEventHandler extends object Type Component with CopyEventArgs
+ Method PageCopyInitiatedEventHandler extends object Type Page with CopyEventArgs
+ Method PageCopyProcessedEventHandler extends object Type Page with CopyEventArgs
+```
