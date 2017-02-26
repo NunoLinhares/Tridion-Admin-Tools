@@ -108,10 +108,10 @@ Function Get-TridionEventSystemExtensions
                                 {
                                     $message = " Method ";
                                     $message += $method.Name;
-                                    $message += " extends object ";
+                                    $message += " extends object Type ";
                                     $message += $method.GetParameters()[0].ParameterType.Name;
-                                    $message += " on ";
-                                    $message += $method.GetParameters()[1].ParameterType.Name.Replace("EventArgs", "");
+                                    $message += " with ";
+                                    $message += $method.GetParameters()[1].ParameterType.Name;
                                     #$message += " in phase ";
                                     #$message += $method.GetParameters()[2].ParameterType.Name;
                                     Write-Host $message;
