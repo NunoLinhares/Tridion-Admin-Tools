@@ -43,7 +43,7 @@ Function Get-TridionEventSystemExtensions
     Process
     {
         Write-Debug "Found Tridion root at $TridionPath";
-        $configPath = $TridionPath + "Config\Tridion.ContentManager.Config";
+        $configPath = Join-Path( $TridionPath, "Config\Tridion.ContentManager.Config");
         [xml] $TCMConfig = Get-Content $configPath;
         foreach($node in $TCMConfig.configuration.extensions.add)
         {
@@ -66,17 +66,11 @@ Function Get-TridionEventSystemExtensions
             Write-Host "==========================================================";
            
 
-
-            if($asm -ne $null)
-            {
-             #   $asm.GetTypes() | ?{$_.IsPublic} | ?{$_.BaseType.FullName -eq "Tridion.ContentManager.Extensibility.TcmExtension"} | select DeclaredMethods | sort BaseType | ft -groupby BaseType
-            }
-
             foreach($type in $asm.GetTypes())
             {
                 if($type.IsPublic)
                 {
-                    if($type.BaseType.FullName -eq "Tridion.ContentManager.Extensibility.TcmExtension")
+                    if($type.BaseType.FullName.StartsWith("Tridion."))
                     {
                         foreach($method in $type.DeclaredMethods)
                         {
@@ -92,7 +86,7 @@ Function Get-TridionEventSystemExtensions
                                 foreach($parameter in $method.GetParameters())
                                 {
                                     #Write-Host "  " $parameter.ParameterType.FullName;
-                                    if($parameter.ParameterType.FullName.StartsWith("Tridion.ContentManager")) { $hasTridionSubject = $true }
+                                    if($parameter.ParameterType.FullName.StartsWith("Tridion.")) { $hasTridionSubject = $true }
                                     if($parameter.ParameterType.FullName.EndsWith("EventArgs")) { $hasArgs = $true }
                                     if($parameter.ParameterType.FullName.EndsWith("EventPhases")) { $hasEventPhase = $true }
                                 }
